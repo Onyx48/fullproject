@@ -4,10 +4,13 @@ import "./index.css";
 import App from "./App.jsx";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Signup from "./pages/Signup.jsx";
+import Protected from "./components/AuthLayout.jsx";
 import Login from "./pages/Login.jsx";
 import Home from "./pages/Home.jsx";
 import { Provider } from "react-redux";
 import store from "./store/store.js";
+import AllPosts from "./pages/AllPosts.jsx";
+import AddPost from "./pages/AddPost.jsx";
 
 const router = createBrowserRouter([
   {
@@ -22,22 +25,38 @@ const router = createBrowserRouter([
       {
         path: "/Login",
         element: (
-          // <AuthLayout authentication ={false}>
-          <Login />
-
-          // </AuthLayout>
+          <AuthLayout authentication={false}>
+            <Login />
+          </AuthLayout>
         ),
       },
       {
         path: "/Signup",
         element: (
-          // <AuthLayout authentication ={false}>
-          <Signup />
-          // </AuthLayout>
+          <AuthLayout authentication={false}>
+            <Signup />
+          </AuthLayout>
         ),
       },
       {
         path: "/",
+      },
+      {
+        path: "/all-posts",
+        element: (
+          <Protected authencation={true}>
+            <AllPosts />
+          </Protected>
+        ),
+      },
+      {
+        path: "/add-post",
+        element: (
+          
+          <Protected authentication>
+            <AddPost />
+          </Protected>
+        ),
       },
     ],
   },
