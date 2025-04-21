@@ -7,10 +7,8 @@ export class AuthService {
 
   constructor() {
     this.client
-        .setEndpoint(conf.appwriteUrl)
-        .setProject(conf.appwriteProjectId);
-
-        
+      .setEndpoint(conf.appwriteUrl)
+      .setProject(conf.appwriteProjectId);
 
     this.account = new Account(this.client);
     console.log("Appwrite Auth Service Initialized");
@@ -25,7 +23,7 @@ export class AuthService {
         name
       );
       if (userAccount) {
-        console.log("Account created,attempting login",email);
+        console.log("Account created,attempting login", email);
         return this.login({ email, password });
       } else {
         return userAccount;
@@ -59,10 +57,10 @@ export class AuthService {
       console.log("Appwrite getCurrentUser successful:", user);
       return user;
     } catch (error) {
-      console.log(
-        "Appwrite service :: getCurrentUser :: error (No session?)",
-        error
-      );
+      // console.log(
+      //   "Appwrite service :: getCurrentUser :: error (No session?)",
+      //   error
+      // );
     }
     return null;
   }

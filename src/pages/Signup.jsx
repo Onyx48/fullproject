@@ -6,7 +6,7 @@ import { Logo } from "../components/Logo/Logo";
 import { useForm } from "react-hook-form";
 import authservice from "../appwrite/auth";
 import { useDispatch } from "react-redux";
-import { Signup } from "../store/authSlice";
+;
 
 function Signup() {
   const [isEmailFocused, setIsEmailFocused] = useState(false);

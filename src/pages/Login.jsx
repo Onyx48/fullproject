@@ -28,7 +28,7 @@ function Login() {
       const session = await authservice.login(data);
       if (session) {
         const userData = await authservice.login(data);
-        console.log("Login Successful,session", session);
+        console.log("Login Successful,session :", session);
         if (userdata) {
           dispatch(login({ userData: userData }));
           console.log("Dispatched Redux login action with userData:", userData);
@@ -55,7 +55,7 @@ function Login() {
   const hoverShadowClass = "hover:shadow-[inset_0_2px_4px_0_rgb(0_0_0_/_0.15)]";
 
   return (
-    <form onSubmit={handleSubmit(handleLogin)} className="mt-8">
+    
       <div className="flex items-center justify-center w-full">
         <div className="mx-auto w-full max-w-lg rounded-xl border-black/10 bg-gray-200">
           <div className="mb-2 flex justify-center">
@@ -73,7 +73,7 @@ function Login() {
             </span>
           </p>
           {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
-          <form onSubmit={handleLogin} className="mt-8">
+          <form onSubmit={handleSubmit(handleLogin)} className="mt-8">
             <div className="space-y-5">
               <div className="flex flex-col items-center">
                 <Input
@@ -125,7 +125,7 @@ function Login() {
           </form>
         </div>
       </div>
-    </form>
+    
   );
 }
 

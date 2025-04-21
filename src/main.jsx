@@ -11,6 +11,7 @@ import { Provider } from "react-redux";
 import store from "./store/store.js";
 import AllPosts from "./pages/AllPosts.jsx";
 import AddPost from "./pages/AddPost.jsx";
+import AuthLayout from "./components/AuthLayout.jsx"
 
 const router = createBrowserRouter([
   {
