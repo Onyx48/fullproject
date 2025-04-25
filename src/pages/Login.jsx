@@ -42,9 +42,9 @@ function Login() {
         navigate("/");
       }
     } catch (error) {
-      console.error("Login failed:", err);
+      console.error("Login failed:", error);
       setError(
-        err.message || "Login failed.Please check credentials and try again"
+        error.message || "Login failed.Please check credentials and try again"
       );
     }
   };

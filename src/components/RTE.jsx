@@ -5,7 +5,7 @@ import { Editor } from "@tinymce/tinymce-react";
 // Controller is used to wrap third-party controlled components (like TinyMCE)
 // and connect them to React Hook Form's state and validation.
 import { Controller } from "react-hook-form";
-import conf from "../conf/conf"; // Import conf to get API key
+import conf from "../Conf/Conf"; // Import conf to get API key
 
 // Export the component directly (no forwardRef needed here as Controller handles it)
 export default function RTE({

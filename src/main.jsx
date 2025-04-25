@@ -11,8 +11,9 @@ import { Provider } from "react-redux";
 import store from "./store/store.js";
 import AllPosts from "./pages/AllPosts.jsx";
 import AddPost from "./pages/AddPost.jsx";
-import AuthLayout from "./components/AuthLayout.jsx";
+//import AuthLayout from "./components/AuthLayout.jsx";
 import EditPost from "./pages/EditPost.jsx";
+import Post from "./pages/Post.jsx";
 
 const router = createBrowserRouter([
   {
@@ -27,26 +28,24 @@ const router = createBrowserRouter([
       {
         path: "/Login",
         element: (
-          <AuthLayout authentication={false}>
+          <Protected authentication={false}>
             <Login />
-          </AuthLayout>
+          </Protected>
         ),
       },
       {
         path: "/Signup",
         element: (
-          <AuthLayout authentication={false}>
+          <Protected authentication={false}>
             <Signup />
-          </AuthLayout>
+          </Protected>
         ),
       },
-      {
-        path: "/",
-      },
+
       {
         path: "/all-posts",
         element: (
-          <Protected authencation={true}>
+          <Protected authentication={true}>
             <AllPosts />
           </Protected>
         ),
@@ -68,7 +67,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/path/:slug",
+        path: "/post/:slug",
         element: <Post />,
       },
     ],

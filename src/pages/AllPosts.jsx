@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 // Import Appwrite service and components
 import appwriteService from "../appwrite/config"; // Adjust path
 import { Container, PostCard } from "../components"; // Adjust path
+import { Query } from "appwrite";
 
 function AllPosts() {
   // State to hold the array of posts fetched from Appwrite
@@ -16,7 +17,7 @@ function AllPosts() {
     setLoading(true);
     // Call service to get posts (default query is status='active')
     appwriteService
-      .getPosts([]) // Pass empty array to get all posts (or default active)
+      .getPosts([Query.equal("status", "active")]) // Pass empty array to get all posts (or default active)
       // If you ONLY want active posts: appwriteService.getPosts([Query.equal("status", "active")])
       // Make sure to import Query from appwrite if using filters.
       .then((postsResponse) => {
@@ -70,21 +71,22 @@ function AllPosts() {
       <Container>
         {/* Use flex-wrap to arrange cards in a grid-like manner */}
         <div className="flex flex-wrap -m-2">
-          {" "}
           {/* Negative margin for spacing trick */}
           {/* Map over the 'posts' array */}
-          {posts.map((post) => (
+          {posts.map((post) => {
             // Each post card container. Adjust width (w-1/4 for 4 columns, etc.)
-            <div
-              key={post.$id}
-              className="p-2 w-full sm:w-1/2 md:w-1/3 lg:w-1/4"
-            >
-              {/* Render the PostCard component */}
-              {/* Use spread operator {...post} to pass all post properties as props */}
-              <PostCard {...post} />
-              {/* Equivalent to: <PostCard $id={post.$id} title={post.title} featuredImage={post.featuredImage} /> */}
-            </div>
-          ))}
+            return (
+              <div
+                key={post.$id}
+                className="p-2 w-full sm:w-1/2 md:w-1/3 lg:w-1/4"
+              >
+                {/* Render the PostCard component */}
+                {/* Use spread operator {...post} to pass all post properties as props */}
+                <PostCard {...post} />
+                {/* Equivalent to: <PostCard $id={post.$id} title={post.title} featuredImage={post.featuredImage} /> */}
+              </div>
+            );
+          })}
         </div>
       </Container>
     </div>

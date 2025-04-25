@@ -58,7 +58,7 @@ export class Service {
   async deletePost(slug) {
     try {
       console.log("Appwrite service:Attempting to delete post with slug", slug);
-      return await this.databases.deleteDocument(
+      await this.databases.deleteDocument(
         conf.appwriteDatabaseId,
         conf.appwriteCollectionId,
         slug
@@ -73,7 +73,7 @@ export class Service {
   async getPost(slug) {
     try {
       console.log("Appwrite service:Attempting to get post with slug", slug);
-      return await this.databases.createDocument(
+      return await this.databases.getDocument(
         conf.appwriteDatabaseId,
         conf.appwriteCollectionId,
         slug
@@ -87,13 +87,13 @@ export class Service {
     }
   }
 
-  async getPost(queries = [Query.equal("status", "active")]) {
+  async getPosts(queries = [Query.equal("status", "active")]) {
     try {
       console.log(
         "Appwrite service:Attempting to list post with queries",
-        slug
+        queries
       );
-      return await this.databases.createDocument(
+      return await this.databases.listDocuments(
         conf.appwriteDatabaseId,
         conf.appwriteCollectionId,
         queries
@@ -116,19 +116,7 @@ export class Service {
       throw error;
     }
   }
-  async uploadFile(file) {
-    try {
-      console.log("Appwrite service:Attempting to upload file", file.name);
-      return await this.bucket.createFile(
-        conf.appwriteBucketId,
-        ID.unique(),
-        file
-      );
-    } catch (error) {
-      console.error("Appwrite service :: uploadFile::error", error);
-      throw error;
-    }
-  }
+
   async deleteFile(fileId) {
     try {
       console.log("Appwrite service:Attempting to delete file with Id", fileId);
@@ -152,6 +140,6 @@ export class Service {
   }
 }
 
-const appwriteService = new Service();
+const service = new Service();
 
-export default appwriteService;
+export default service;

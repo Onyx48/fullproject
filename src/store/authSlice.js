@@ -12,7 +12,7 @@ const authSlice = createSlice({
     login: (state, action) => {
       state.status = true;
 
-      state.useData = action.payload.userData;
+      state.userData = action.payload.userData;
       console.log("Redux login reducer executed.New state", state);
     },
 

@@ -2,7 +2,16 @@ import React from "react";
 import appwriteService from "../appwrite/config";
 import { Link } from "react-router-dom";
 
-function PostCard({ $id, title, featuredImage }) {
+export default function PostCard({ $id, title, featuredImage }) {
+  console.log("DEBUG PostCard $id:", $id, "FeaturedImage ID:", featuredImage);
+  if (featuredImage) {
+    console.log(
+      "DEBUG PostCard Generated URL:",
+      appwriteService.getFilePreview(featuredImage)
+    );
+  } else {
+    console.log("DEBUG PostCard No Featured Image ID");
+  }
   return (
     // Wrap the entire card in a Link that navigates to the single post view
     // The URL uses the post's $id (which might be the slug)
@@ -15,8 +24,8 @@ function PostCard({ $id, title, featuredImage }) {
           {featuredImage && (
             <img
               // Pass the File ID to get the preview URL
-              src={appwriteService.getFilePreview(featuredImage)}
-              alt={title} // Use post title as alt text
+              src={appwriteService.getFilePreview(featuredImage, 300, 200)}
+              alt={title || "Featured Image"} // Use post title as alt text
               className="rounded-xl w-full object-cover aspect-video" // Basic image styling
             />
           )}

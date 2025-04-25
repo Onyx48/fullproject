@@ -13,8 +13,8 @@ function Header() {
     { name: "Home", slug: "/", active: true },
     { name: "Login", slug: "/Login", active: !authStatus },
     { name: "Signup", slug: "/Signup", active: !authStatus },
-    { name: "All Posts", slug: "/all-posts", active: !authStatus },
-    { name: "Add Post", slug: "/add-post", active: !authStatus },
+    { name: "All Posts", slug: "/all-posts", active: authStatus },
+    { name: "Add Post", slug: "/add-post", active: authStatus },
   ];
   return (
     <header className="bg-gray-500">
