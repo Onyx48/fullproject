@@ -2,7 +2,7 @@ import conf from "../Conf/Conf";
 import { Client, ID, Databases, Storage, Query } from "appwrite";
 
 export class Service {
-  client = newClient();
+  client = new Client();
   databases;
   bucket;
 

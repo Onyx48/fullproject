@@ -15,7 +15,7 @@ export default function Protected({ children, authentication = true }) {
     if (authentication && authStatus != authentication) {
       console.log(
         "AuthLayout: Redirecting to /Login (authentication required, user not logged in)"
-      );
+      );// it is saying about authentication (required or not) in context, default of authstatus is false and authentication is true
       navigate("/Login");
     } else if (!authentication && authStatus !== authentication) {
       console.log(
